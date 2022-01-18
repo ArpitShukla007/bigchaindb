@@ -8,7 +8,7 @@ from collections import defaultdict
 
 from bigchaindb import App, BigchainDB
 from bigchaindb.tendermint_utils import decode_transaction
-from abci import CodeTypeOk
+from abci.application import OkCode
 
 
 class ParallelValidationApp(App):
@@ -18,11 +18,11 @@ class ParallelValidationApp(App):
         self.parallel_validator.start()
 
     def check_tx(self, raw_transaction):
-        return self.abci.ResponseCheckTx(code=CodeTypeOk)
+        return self.abci.ResponseCheckTx(code=OkCode)
 
     def deliver_tx(self, raw_transaction):
         self.parallel_validator.validate(raw_transaction)
-        return self.abci.ResponseDeliverTx(code=CodeTypeOk)
+        return self.abci.ResponseDeliverTx(code=OkCode)
 
     def end_block(self, request_end_block):
         result = self.parallel_validator.result(timeout=30)

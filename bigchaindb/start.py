@@ -68,7 +68,7 @@ def start(args):
     setproctitle.setproctitle('bigchaindb')
 
     # Start the ABCIServer
-    abci = ABCI(TmVersion(bigchaindb.config['tendermint']['version']))
+    #abci = ABCI(TmVersion(bigchaindb.config['tendermint']['version']))
     if args.experimental_parallel_validation:
         app = ABCIServer(
             app=ParallelValidationApp(
