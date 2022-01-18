@@ -4,7 +4,7 @@
 # Code is Apache-2.0 and docs are CC-BY-4.0
 
 """This module contains all the goodness to integrate BigchainDB
-with Tendermint.
+with Tendermint
 """
 import logging
 import sys
