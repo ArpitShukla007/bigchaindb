@@ -4,7 +4,7 @@ import codecs
 
 import bigchaindb
 #from abci import types_v0_22_8, types_v0_31_5, TmVersion
-from abci_pb.v0_34_11.github.com.tendermint.tendermint.abci.types import \
+from tendermint.abci import \
     types_pb2 as types_v0_34_11
 from bigchaindb.common.exceptions import InvalidPublicKey, BigchainDBError
 
