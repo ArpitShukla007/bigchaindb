@@ -8,9 +8,6 @@ from tendermint.abci import \
     types_pb2 as types_v0_34_11
 from bigchaindb.common.exceptions import InvalidPublicKey, BigchainDBError
 
-class TmVersion(enum.Enum):
-    """Supported Tendermint versions enum"""
-    v0_34_11 = 'v0.34.11'
 
 def encode_validator(v):
     ed25519_public_key = v['public_key']['value']
