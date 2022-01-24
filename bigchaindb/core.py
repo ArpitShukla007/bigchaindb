@@ -34,7 +34,7 @@ class App(BaseApplication):
     transaction logic to Tendermint Core.
     """
 
-    def __init__(self, abci, bigchaindb=None, events_queue=None,):
+    def __init__(self,  bigchaindb=None, events_queue=None,):
         #super().__init__(abci)
         self.events_queue = events_queue
         self.bigchaindb = bigchaindb or BigchainDB()

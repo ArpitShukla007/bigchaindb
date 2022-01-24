@@ -3,9 +3,14 @@ import binascii
 import codecs
 
 import bigchaindb
-from abci import types_v0_22_8, types_v0_31_5, TmVersion
+#from abci import types_v0_22_8, types_v0_31_5, TmVersion
+from abci_pb.v0_34_11.github.com.tendermint.tendermint.abci.types import \
+    types_pb2 as types_v0_34_11
 from bigchaindb.common.exceptions import InvalidPublicKey, BigchainDBError
 
+class TmVersion(enum.Enum):
+    """Supported Tendermint versions enum"""
+    v0_34_11 = 'v0.34.11'
 
 def encode_validator(v):
     ed25519_public_key = v['public_key']['value']
@@ -15,10 +20,9 @@ def encode_validator(v):
     except ValueError:
         raise BigchainDBError('Invalid tendermint version, '
                               'check BigchainDB configuration file')
-
+    #Todo 
     validator_update_t, pubkey_t = {
-        TmVersion.v0_22_8: (types_v0_22_8.Validator, types_v0_22_8.PubKey),
-        TmVersion.v0_31_5: (types_v0_31_5.ValidatorUpdate, types_v0_31_5.PubKey)
+        TmVersion.v0_34_11: (types_v0_34_11.ValidatorUpdate, types_v0_34_11.PubKey)
     }[version]
     pub_key = pubkey_t(type='ed25519', data=bytes.fromhex(ed25519_public_key))
 

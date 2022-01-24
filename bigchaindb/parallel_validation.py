@@ -12,8 +12,8 @@ from abci.application import OkCode
 
 
 class ParallelValidationApp(App):
-    def __init__(self, bigchaindb=None, events_queue=None, abci=None):
-        super().__init__(bigchaindb, events_queue, abci=abci)
+    def __init__(self, bigchaindb=None, events_queue=None):
+        super().__init__(bigchaindb, events_queue)
         self.parallel_validator = ParallelValidator()
         self.parallel_validator.start()
 
