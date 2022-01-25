@@ -115,7 +115,7 @@ class App(BaseApplication):
 
         logger.info(f"Tendermint version: {request.version}")
 
-        r = ResponseInfo()
+        r = self.abci.ResponseInfo()
         block = self.bigchaindb.get_latest_block()
         if block:
             chain_shift = 0 if self.chain is None else self.chain['height']
