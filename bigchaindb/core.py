@@ -11,12 +11,35 @@ import sys
 
 from abci.application import BaseApplication
 from abci.application import OkCode
+from tendermint.abci.types_pb2 import (
+    RequestInfo,
+    ResponseInfo,
+    RequestInitChain,
+    ResponseInitChain,
+    ResponseCheckTx,
+    ResponseDeliverTx,
+    RequestQuery,
+    ResponseQuery,
+    RequestBeginBlock,
+    ResponseBeginBlock,
+    RequestEndBlock,
+    ResponseEndBlock,
+    ResponseCommit,
+    RequestLoadSnapshotChunk,
+    ResponseLoadSnapshotChunk,
+    RequestListSnapshots,
+    ResponseListSnapshots,
+    RequestOfferSnapshot,
+    ResponseOfferSnapshot,
+    RequestApplySnapshotChunk,
+    ResponseApplySnapshotChunk,
+)
 
 from bigchaindb import BigchainDB
 from bigchaindb.elections.election import Election
 from bigchaindb.version import __tm_supported_versions__
 from bigchaindb.utils import tendermint_version_is_compatible
-from bigchaindb.tendermint_utils import (decode_transaction,
+from bigchaindb.tendermint_utils import (decode_transaction ,
                                          calculate_hash)
 from bigchaindb.lib import Block
 import bigchaindb.upsert_validator.validator_utils as vutils
@@ -115,7 +138,7 @@ class App(BaseApplication):
 
         logger.info(f"Tendermint version: {request.version}")
 
-        r = self.abci.ResponseInfo()
+        r = ResponseInfo()
         block = self.bigchaindb.get_latest_block()
         if block:
             chain_shift = 0 if self.chain is None else self.chain['height']
